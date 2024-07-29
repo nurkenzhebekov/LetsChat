@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_imageview"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/baseline_account_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:ellipsize="end"
+        android:maxWidth="180dp"
+        android:maxLines="1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/item_imageview"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="fndkndfgdkjnjfgkn" />
+
+    <TextView
+        android:id="@+id/item_counter_roomusers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/item_title"
+        app:layout_constraintTop_toTopOf="@id/item_title"
+        tools:text="3" />
+
+    <TextView
+        android:id="@+id/item_last_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxWidth="180dp"
+        android:maxLines="1"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/item_imageview"
+        app:layout_constraintTop_toBottomOf="@id/item_title"
+        tools:text="sfgdgmfmkbmgfk" />
+
+    <TextView
+        android:id="@+id/item_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="9:00 am" />
+
+    <TextView
+        android:id="@+id/item_counter_unread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/counter_background"
+        android:paddingHorizontal="5dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_timestamp"
+        tools:text="3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
