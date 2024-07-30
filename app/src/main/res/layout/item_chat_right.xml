@@ -9,7 +9,7 @@
         android:id="@+id/item_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/right_bubble"
+        android:background="@color/purple"
         android:maxWidth="210dp"
         android:textColor="@color/white"
         android:textSize="17sp"

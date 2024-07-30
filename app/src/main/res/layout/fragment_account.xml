@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountFragment">
+    tools:context=".fragments.AccountFragment">
 
     <ImageView
         android:id="@+id/image_profile"
@@ -46,27 +46,49 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/label_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginVertical="20dp"
+        android:text="Endless alarm until received"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_username"
+        app:layout_constraintBottom_toTopOf="@id/btn_update"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toEndOf="@id/label_alarm"
+        app:layout_constraintTop_toTopOf="@id/label_alarm"
+        app:layout_constraintBottom_toBottomOf="@id/label_alarm"
+        />
+
     <Button
         android:id="@+id/btn_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="Update"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/til_username" />
+        app:layout_constraintTop_toBottomOf="@id/switch_alarm" />
 
     <Button
         android:id="@+id/btn_signout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="Sign Out"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/btn_update" />
+        app:layout_constraintTop_toBottomOf="@id/btn_update"/>
 
     <ProgressBar
         android:id="@+id/progressbar"

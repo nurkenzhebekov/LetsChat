@@ -8,7 +8,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.letschat.R
 import com.example.letschat.databinding.ActivityChatLogBinding
-import com.example.letschat.utils.CHATROOM_KEY
 
 class ChatLogActivity : AppCompatActivity() {
 
@@ -28,7 +27,7 @@ class ChatLogActivity : AppCompatActivity() {
             insets
         }
 
-        if (intent.hasExtra(CHATROOM_KEY)) chatRoomKey = intent.getStringExtra(CHATROOM_KEY)
+        if (intent.hasExtra(chatRoomKey)) chatRoomKey = intent.getStringExtra(chatRoomKey)
         else onBackPressed()
     }
 

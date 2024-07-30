@@ -1,4 +1,4 @@
-package com.example.letschat
+package com.example.letschat.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -124,7 +124,10 @@ class FriendListFragment : BaseFragment<FragmentFriendListBinding>() {
     }
 
     private fun navigateToChatLogFragment(roomKey: String) {
-        val action = FriendListFragmentDirections.actionFriendListFragmentToChatLogFragment(roomKey)
+        val action =
+            FriendListFragmentDirections.actionFriendListFragmentToChatLogFragment(
+                roomKey
+            )
         findNavController().navigate(action)
     }
 }

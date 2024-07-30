@@ -1,12 +1,20 @@
-package com.example.letschat
+package com.example.letschat.fragments
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.letschat.R
 import com.example.letschat.adapters.ChatRoomRecyclerAdapter
 import com.example.letschat.databinding.FragmentChatRoomBinding
 import com.example.letschat.models.ChatRoomModel
@@ -45,6 +53,8 @@ class ChatRoomFragment : BaseFragment<FragmentChatRoomBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        ignoreBatteryOptimizations()
+
         binding.recyclerviewChatRoom.apply {
             adapter = chatRoomRecyclerAdapter
             setHasFixedSize(true)
@@ -54,7 +64,10 @@ class ChatRoomFragment : BaseFragment<FragmentChatRoomBinding>() {
         }
 
         chatRoomRecyclerAdapter.onItemClickListener = { chatRoomKey ->
-            val action = ChatRoomFragmentDirections.actionChatRoomFragmentToChatLogFragment(chatRoomKey)
+            val action =
+                ChatRoomFragmentDirections.actionChatRoomFragmentToChatLogFragment(
+                    chatRoomKey
+                )
             findNavController().navigate(action)
         }
     }
@@ -66,6 +79,8 @@ class ChatRoomFragment : BaseFragment<FragmentChatRoomBinding>() {
             findNavController().navigate(R.id.action_chatRoomFragment_to_loginFragment)
         else {
             currentUserUid = Firebase.auth.uid!!
+
+            firebaseViewModel.getAndSavePushTokenToServer(currentUserUid)
 
             fetchChatRooms()
         }
@@ -123,5 +138,21 @@ class ChatRoomFragment : BaseFragment<FragmentChatRoomBinding>() {
                 }
 
             })
+    }
+
+    @SuppressLint("ObsoleteSdkInt", "BatteryLife")
+    private fun ignoreBatteryOptimizations() {
+        val pm = activity?.getSystemService(Context.POWER_SERVICE) as PowerManager
+        val packName = activity?.packageName
+        var isWiteListing = false
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            isWiteListing = pm.isIgnoringBatteryOptimizations(packName)
+        }
+        if (!isWiteListing) {
+            Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).also {
+                it.data = Uri.parse("package:$packName")
+                activity?.startActivity(it)
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.example.letschat.ChatRoomFragment
+import com.example.letschat.fragments.ChatRoomFragment
 import com.example.letschat.R
 import com.example.letschat.databinding.ItemChatRoomBinding
 import com.example.letschat.models.ChatRoomModel

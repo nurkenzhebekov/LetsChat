@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/chatRoomFragment">
+    app:startDestination="@id/permissionFragment">
 
     <fragment
         android:id="@+id/friendListFragment"
-        android:name="com.example.letschat.FriendListFragment"
+        android:name="com.example.letschat.fragments.FriendListFragment"
         android:label="fragment_friend_list"
         tools:layout="@layout/fragment_friend_list" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.letschat.LoginFragment"
+        android:name="com.example.letschat.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.letschat.RegisterFragment"
+        android:name="com.example.letschat.fragments.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatRoomFragment"
-        android:name="com.example.letschat.ChatRoomFragment"
+        android:name="com.example.letschat.fragments.ChatRoomFragment"
         android:label="fragment_chat_room"
         tools:layout="@layout/fragment_chat_room" >
         <action
@@ -54,16 +54,43 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.letschat.AccountFragment"
+        android:name="com.example.letschat.fragments.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/chatLogFragment"
-        android:name="com.example.letschat.ChatLogFragment"
+        android:name="com.example.letschat.fragments.ChatLogFragment"
         android:label="fragment_chat_log"
         tools:layout="@layout/fragment_chat_log" >
         <argument
             android:name="roomKey_selected"
             app:argType="string" />
+        <action
+            android:id="@+id/action_chatLogFragment_to_createGroupRoomFragment"
+            app:destination="@id/createGroupRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createGroupRoomFragment"
+        android:name="com.example.letschat.fragments.CreateGroupRoomFragment"
+        android:label="fragment_create_group_room"
+        tools:layout="@layout/fragment_create_group_room" >
+        <action
+            android:id="@+id/action_createGroupRoomFragment_to_chatLogFragment"
+            app:destination="@id/chatLogFragment" />
+        <argument
+            android:name="roomUsers_selected"
+            app:argType="string[]" />
+        <argument
+            android:name="current_roomKey"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/permissionFragment"
+        android:name="com.example.letschat.fragments.PermissionFragment"
+        android:label="fragment_permission"
+        tools:layout="@layout/fragment_permission" >
+        <action
+            android:id="@+id/action_permissionFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
     </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.letschat
+package com.example.letschat.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.viewbinding.ViewBinding
-import androidx.viewbinding.ViewBindings
 
 abstract class BaseFragment<B: ViewBinding> : Fragment() {
 
@@ -21,7 +20,6 @@ abstract class BaseFragment<B: ViewBinding> : Fragment() {
         _binding = getFragmentBinding(inflater, container)
         return binding.root
 
-        //Adding an option to handle the back press in fragment
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {

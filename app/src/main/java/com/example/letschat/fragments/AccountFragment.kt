@@ -1,4 +1,4 @@
-package com.example.letschat
+package com.example.letschat.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -10,9 +10,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import coil.load
 import coil.transform.CircleCropTransformation
+import com.example.letschat.R
 import com.example.letschat.activities.MainActivity
 import com.example.letschat.databinding.FragmentAccountBinding
 import com.example.letschat.models.UserModel
+import com.example.letschat.utils.ENDLESS_ALARM
+import com.example.letschat.utils.getBoolean
+import com.example.letschat.utils.putBoolean
+import com.example.letschat.utils.toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,6 +35,9 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
     private lateinit var currentUserUid: String
     private lateinit var currentUser: UserModel
     private var userProfileImageUri: Uri? = null
+
+    private var previousEndlessAlarm = false
+    private var updatedEndlessAlarm = false
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
@@ -51,7 +59,17 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
             cropImage(null)
         }
 
+        binding.switchAlarm.setOnCheckedChangeListener { _, b ->
+            updatedEndlessAlarm = !updatedEndlessAlarm
+        }
+
         binding.btnUpdate.setOnClickListener {
+
+            if (updatedEndlessAlarm != previousEndlessAlarm) {
+                putBoolean(requireContext(), ENDLESS_ALARM, updatedEndlessAlarm)
+                toast(requireContext(), "Successfully updated!")
+            }
+
             val userName = binding.etxUsername.text.toString()
             if (userName == currentUser.userName && userProfileImageUri == null) return@setOnClickListener
 
@@ -103,6 +121,11 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
                     }
                     binding.progressbar.visibility = View.GONE
                 }
+
+                previousEndlessAlarm = getBoolean(requireContext(), ENDLESS_ALARM)
+                switchAlarm.isChecked = previousEndlessAlarm
+
+                updatedEndlessAlarm = previousEndlessAlarm
             }
         }
     }

@@ -23,4 +23,9 @@ object DateTimeUtil {
         return DateUtils.isToday(d.time)
     }
 
+    @SuppressLint("SimpleDateFormat")
+    fun createNotifyId(timeInMillis: Long): Int {
+        return SimpleDateFormat("ddHHmmss").format(timeInMillis).toInt()
+    }
+
 }
